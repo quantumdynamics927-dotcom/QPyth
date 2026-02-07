@@ -23,6 +23,10 @@ dev = [
   "ruff>=0.6.0",
   "pre-commit>=3.7.0",
 ]
+web = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.32.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/quantumdynamics927-dotcom/QPyth"

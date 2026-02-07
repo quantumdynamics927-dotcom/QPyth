@@ -29,7 +29,15 @@ Enable physical H₂ VQE:
 pip install qiskit-algorithms qiskit-nature
 ```
 
+For web UI:
+
+```bash
+pip install -e .[web]
+```
+
 ## Run
+
+### CLI Mode
 
 ```bash
 qpy
@@ -40,6 +48,24 @@ Alternate (no PATH needed):
 ```bash
 python -m quantumpytho
 ```
+
+### Web UI Mode
+
+Start the backend:
+
+```bash
+python server.py
+```
+
+In a separate terminal, start the frontend:
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000` in your browser for an interactive quantum computing study companion with sliders, visualizations, and real-time feedback.
 
 ## Project Structure
 
