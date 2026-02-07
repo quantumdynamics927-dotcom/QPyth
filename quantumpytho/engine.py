@@ -1,16 +1,18 @@
 from dataclasses import dataclass
-from typing import Dict, Any
+from typing import Any
 
 from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 
 from .config import QuantumConfig
 
+
 @dataclass
 class QuantumResult:
     circuit: QuantumCircuit
-    counts: Dict[str, int]
-    meta: Dict[str, Any]
+    counts: dict[str, int]
+    meta: dict[str, Any]
+
 
 class QuantumEngine:
     """

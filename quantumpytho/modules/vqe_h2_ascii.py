@@ -1,11 +1,12 @@
-from typing import Callable, List, Tuple
+from collections.abc import Callable
+
 
 def coordinate_descent_1d(
     cost: Callable[[float], float],
     theta0: float,
     step: float,
     iters: int,
-) -> List[Tuple[int, float, float]]:
+) -> list[tuple[int, float, float]]:
     """
     Simple 1D coordinate-descent-like search over a single parameter.
 
@@ -21,7 +22,7 @@ def coordinate_descent_1d(
     Returns a list of (iteration, theta, energy) tuples.
     """
     theta = theta0
-    history: List[Tuple[int, float, float]] = []
+    history: list[tuple[int, float, float]] = []
 
     for k in range(iters):
         E = cost(theta)
@@ -41,7 +42,10 @@ def coordinate_descent_1d(
 
     return history
 
-def energy_history_ascii(history: List[Tuple[int, float, float]], bar_width: int = 10) -> None:
+
+def energy_history_ascii(
+    history: list[tuple[int, float, float]], bar_width: int = 10
+) -> None:
     """
     Render a history of (iter, theta, energy) as ASCII bars.
     Bars are scaled linearly between min and max energy.

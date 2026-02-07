@@ -2,9 +2,7 @@
 CLI wrapper for H₂ VQE runs, supporting both generic optimizer and physical VQE.
 """
 
-from typing import List, Tuple
-
-from .vqe_h2_ascii import energy_history_ascii, coordinate_descent_1d
+from .vqe_h2_ascii import energy_history_ascii
 from .vqe_h2_exact import run_vqe_h2_physical
 
 
@@ -17,7 +15,7 @@ def run_vqe_h2_cli() -> None:
     rather than showing fabricated energies.
     """
     try:
-        energies: List[Tuple[int, float]] = run_vqe_h2_physical()
+        energies: list[tuple[int, float]] = run_vqe_h2_physical()
         print("\nRunning VQE for H₂ (Physical Hamiltonian via Qiskit-Nature)...")
 
     except RuntimeError as e:
