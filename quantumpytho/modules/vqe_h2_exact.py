@@ -39,7 +39,7 @@ def run_vqe_h2_physical(
     """
     try:
         from qiskit.circuit.library import TwoLocal
-        from qiskit.primitives import Estimator
+        from qiskit_aer.primitives import Estimator
         from qiskit_algorithms import VQE
         from qiskit_nature.second_q.drivers import PySCFDriver
         from qiskit_nature.second_q.mappers import ParityMapper
