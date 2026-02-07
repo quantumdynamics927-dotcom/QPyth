@@ -1,11 +1,12 @@
 from .config import QuantumConfig
 from .engine import QuantumEngine
-from .modules.qrng_sacred import qrng_phi_sequence
-from .modules.circuit_explorer import bell_pair, hadamard_sweep
 from .modules.bloch_ascii import run_bloch_ascii
-from .modules.vqe_h2_cli import run_vqe_h2_cli
-from .modules.teleport_bridge import run_teleport_bridge
+from .modules.circuit_explorer import bell_pair, hadamard_sweep
 from .modules.decoherence_toggle import DecoherenceController
+from .modules.qrng_sacred import qrng_phi_sequence
+from .modules.teleport_bridge import run_teleport_bridge
+from .modules.vqe_h2_cli import run_vqe_h2_cli
+
 
 def print_menu(deco_on: bool) -> None:
     deco_label = "ON" if deco_on else "OFF"
@@ -19,6 +20,7 @@ def print_menu(deco_on: bool) -> None:
     print("7) Molecular Ground-State (VQE Sim)")
     print(f"8) Toggle Quantum Decoherence [{deco_label}]")
     print("q) Quit")
+
 
 def run_app() -> None:
     cfg = QuantumConfig()

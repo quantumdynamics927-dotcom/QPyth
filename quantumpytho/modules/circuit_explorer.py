@@ -1,5 +1,7 @@
 from qiskit import QuantumCircuit
+
 from ..engine import QuantumEngine, QuantumResult
+
 
 def bell_pair(engine: QuantumEngine) -> QuantumResult:
     qc = QuantumCircuit(2, 2)
@@ -7,6 +9,7 @@ def bell_pair(engine: QuantumEngine) -> QuantumResult:
     qc.cx(0, 1)
     qc.measure([0, 1], [0, 1])
     return engine.run(qc, label="bell_pair")
+
 
 def hadamard_sweep(engine: QuantumEngine, depth: int = 3) -> QuantumResult:
     qc = QuantumCircuit(1, 1)

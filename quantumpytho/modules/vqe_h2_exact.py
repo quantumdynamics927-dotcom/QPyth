@@ -14,12 +14,10 @@ References:
 
 from __future__ import annotations
 
-from typing import List, Tuple
-
 
 def run_vqe_h2_physical(
     max_iters: int = 50,
-) -> List[Tuple[int, float]]:
+) -> list[tuple[int, float]]:
     """
     Physically correct Variational Quantum Eigensolver for H₂ molecule
     in minimal basis (STO-3G), following standard Qiskit/IBM examples.
@@ -40,9 +38,9 @@ def run_vqe_h2_physical(
     the standard Qiskit/Nature stack, ensuring scientific correctness.
     """
     try:
-        from qiskit_algorithms import VQE
-        from qiskit.primitives import Estimator
         from qiskit.circuit.library import TwoLocal
+        from qiskit.primitives import Estimator
+        from qiskit_algorithms import VQE
         from qiskit_nature.second_q.drivers import PySCFDriver
         from qiskit_nature.second_q.mappers import ParityMapper
         from qiskit_nature.second_q.problems import ElectronicStructureProblem
@@ -51,17 +49,13 @@ def run_vqe_h2_physical(
         raise RuntimeError(
             "H₂ VQE requires qiskit_algorithms and qiskit_nature to be installed. "
             f"Import error: {e}"
-        )
+        ) from e
 
     # 1. Build electronic structure problem for H₂
-    driver = PySCFDriver(
-        atom="H 0 0 0; H 0 0 0.735",
-        basis="sto3g"
-    )
+    driver = PySCFDriver(atom="H 0 0 0; H 0 0 0.735", basis="sto3g")
     es_problem = ElectronicStructureProblem(driver)
     es_problem = ActiveSpaceTransformer(
-        num_electrons=2,
-        num_spatial_orbitals=2
+        num_electrons=2, num_spatial_orbitals=2
     ).transform(es_problem)
 
     # 2. Extract second-quantized Hamiltonian and map to qubits
@@ -82,7 +76,7 @@ def run_vqe_h2_physical(
     estimator = Estimator()
     vqe = VQE(estimator, ansatz=ansatz)
 
-    energies: List[Tuple[int, float]] = []
+    energies: list[tuple[int, float]] = []
 
     def callback(eval_count, parameters, mean, std):
         """Collect energy at each VQE iteration."""
